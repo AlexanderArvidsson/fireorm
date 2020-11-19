@@ -53,5 +53,10 @@ export function serializeEntity<T extends IEntity>(
   subColMetadata.forEach(scm => {
     delete serializableObj[scm.propertyKey];
   });
+
+  ['id', 'exists', 'hasPendingWrites'].forEach(field => {
+    delete serializableObj[field];
+  });
+
   return serializableObj;
 }
